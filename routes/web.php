@@ -18,3 +18,4 @@ Route::get('/productos', function () {
 
 Route::resource('products', ProductController::class)->except('show');
 Route::get('/productos', [ProductController::class, 'index'])->name('product.index');
+Route::get('/productos/agregar', [ProductController::class, 'create'])->name('product.create');

@@ -67,7 +67,10 @@
           window.location.href = url;
 
       }
+      @if (session('success'))
+      alert( '{{ session('success')}}');
+      @endif
     </script>
-    @endsection
+  @endsection
 
 </x-layout>
