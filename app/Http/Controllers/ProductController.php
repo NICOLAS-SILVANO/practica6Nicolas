@@ -61,19 +61,19 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(ProductUpdateRequest $request, Product $product): RedirectResponse
-    {
-        $product->update($request->validated());
+   // public function update(ProductUpdateRequest $request, Product $product): RedirectResponse
+   // {
+     //   $product->update($request->validated());
 
-        $request->session()->flash('Product.name', $Product->name);
+      //  $request->session()->flash('Product.name', $Product->name);
 
-        return redirect()->route('products.index');
-    }
+       // return redirect()->route('products.index');
+   // }
 
     public function destroy(Request $request, Product $product): RedirectResponse
     {
         $product->delete();
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Producto eliminado exitosamente ✅.');
     }
 }

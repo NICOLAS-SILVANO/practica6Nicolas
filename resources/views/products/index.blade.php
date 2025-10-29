@@ -47,7 +47,7 @@
                                         <i class="bi bi-pencil"></i>
                                             <span class="d-none d-sm-inline">Edit</span>
                                     </button>
-                                    <button class="btn btn-danger btn-sm" onclick="deleteRecord('/products/{{ $product['id'] }}/delete')">
+                                    <button class="btn btn-danger btn-sm" onclick="deleteRecord('/products/{{ $product['id'] }}')">
                                         <i class="bi bi-trash"></i>
                                         <span class="d-none d-sm-inline">Delete</span>
                                     </button>
@@ -70,6 +70,16 @@
       @if (session('success'))
       alert( '{{ session('success')}}');
       @endif
+              function deleteRecord(url) {
+            if (confirm('¿Está seguro de eliminar este registro?')) {
+                $('<form>', {'action': url, 'method': 'POST'})
+                .append($('<input>', {type: 'hidden', name: '_token', value: '{{ csrf_token() }}'}))
+                .append($('<input>', {type: 'hidden', name: '_method', value: 'DELETE'}))
+                .appendTo('body')
+                .submit()
+                .remove();
+            }
+        }
     </script>
   @endsection
 
